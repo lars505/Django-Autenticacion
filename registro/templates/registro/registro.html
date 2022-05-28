@@ -1,28 +1,23 @@
 {% extends 'registro/layout.html'%}
 
-{% block title%} {% endblock %}
+{% block title%}n Registro {% endblock %}
 
 {%block container%}
 
 <div class="row">
     <div class="col-md-12 col-sm-12">
-        <div class="campos-registro">
-
-            <div class="formulario">
-            <div class="titulo-formulario">
-                <h1>Registro</h1>
-            </div>
-            <form action="#" method="post">
-                <input type="text" name="nombre" autofocus id="" placeholder="Nombres">
-                <input type="text" name="apellido" id="" placeholder="Apellidos">
-                <input type="email" name="correo" id="" placeholder="Correo">
-                <input type="text" name="username" placeholder="Username">
-                <input type="password" name="contrasena" id="" placeholder="Contraseña">
-                <input type="password" name="contrasena2" id="" placeholder="Confirmar Contraseña">
-                
-                <input type="submit" value="Registrarse">
-            </form>    
-            </div>
+        <div class="formulario">
+            <div class="form-titulo">
+                <label for="">Register</label>
+            </div>  
+            <form action="#">
+                <input class="input-nombres" type="text" name="username" placeholder="Nombres">
+                <input class="input-apellidos" type="text" name="username" placeholder="Apellidos">
+                <input class="input-username" type="text" name="username" placeholder="Username">
+                <input class="input-password" type="password" name="contrasena" id="" placeholder="Contraseña">
+                <input class="input-confirmacion" type="password" name="cobtrasena2" placeholder="Confirmar Contraseña">
+                <input class="input-submit" type="submit" value="Registrarse">
+            </form>
         </div>
     </div>
     
