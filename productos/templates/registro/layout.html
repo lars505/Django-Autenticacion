@@ -23,16 +23,15 @@
           <div class="collapse navbar-collapse justify-content-end"  id="navbarNavAltMarkup">
             <div class="navbar-nav mr-auto">
               <a class="nav-link active" aria-current="page" href="{% url 'index' %}">Home</a>
-              <a class="nav-link" href="#">Galería</a>
-              <a class="nav-link" href="#">Contacto</a>
-              <a class="nav-link" href="{% url 'login' %}" >Iniciar Sesión</a>
-              <a class="nav-link" href="{% url 'register' %}">Registro</a>
+              <a class="nav-link" href="{% url 'listar_productos' %}">Listar Productos</a>
+              <a class="nav-link" href="{% url 'agregar_producto' %}">Agregar productos</a>
+              
               <a class="nav-link">Configuración</a>
             </div>
           </div>
         </div>
       </nav>
-    <div class="container-fluid p-0">
+    <div class="container p-0">
         
         {%block container%}
         {% endblock %}

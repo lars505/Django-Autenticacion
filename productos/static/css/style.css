@@ -26,6 +26,7 @@ nav{
 }
 body{
     background-color: var(--azul-strong) !important;
+    color: var(--white) !important;
 }
 .navbar-brand{
     color: var(--bumblebee) !important;

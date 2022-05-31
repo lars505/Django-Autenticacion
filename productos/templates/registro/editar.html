@@ -1,0 +1,17 @@
+{% extends 'registro/layout.html'%}
+
+{% block title%} Editando producto {% endblock %}
+
+{%block container%}
+{% load crispy_forms_tags %}
+<div class="row">
+    <div class="col-md-6">
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ form | crispy }}
+            <br>
+            <input type="submit" value="Editar" class="btn btn-success float-right">
+        </form>
+    </div>
+</div>
+{% endblock %}
