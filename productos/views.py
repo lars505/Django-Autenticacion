@@ -1,8 +1,9 @@
 from django.shortcuts import redirect, render, get_object_or_404
 
+from django.contrib.auth.decorators import login_required, permission_required
 #importamos el formulario
 
-from .forms import ProductoForm
+from .forms import ProductoForm, RegistroForm
 
 from .models import Producto
 
@@ -10,7 +11,7 @@ from .models import Producto
 
 def index(request):
     return render(request, 'registro/index.html')
-
+@permission_required('productos.add_producto')
 def agregar_producto(request):
     #Cargamos el formulario en el data
     data = {
@@ -32,12 +33,13 @@ def agregar_producto(request):
     #Si el metodo no es POST, cargamos el formulario vacio
     return render(request, 'registro/agregar.html' , data)
 
+@permission_required("productos.view_producto")
 def listar_productos(request):
     data = {
         'productos': Producto.objects.all()
     }
     return render(request, 'registro/listar.html', data)
-
+@permission_required('productos.change_producto')
 def editar_producto(request, id):
     producto = get_object_or_404(Producto, pk=id)
     data = {
@@ -52,10 +54,27 @@ def editar_producto(request, id):
             data['form'] = formulario
 
     return render(request, 'registro/editar.html', data)
-
+@permission_required('perms.producto.delete_producto')
 def eliminar_producto(request, id):
     producto = get_object_or_404(Producto, pk=id)
     producto.delete()
     return redirect(to='listar_productos')
 
+
+def registro(request):
+    data = {
+        'form': RegistroForm()
+    }
+    if request.method == 'POST':
+        formulario = RegistroForm(request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            return redirect(to='index')
+        else:
+            data['form'] = formulario
+    return render(request, 'registration/register.html', data)
+
+
+
     
+ 

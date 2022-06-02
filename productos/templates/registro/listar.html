@@ -11,31 +11,47 @@
             <th>Descripción</th>
             <th>Stock</th>
             <th>Categoría</th>
+           
+            {% if perms.productos.delete_producto or perms.productos.change_producto %}
             <th>Acciones</th>
+            {% endif %}
         </tr>
-        {% for producto in productos %}
-        <tr>
-            <td>
-                {{ producto.nombre }}
-            </td>
-            <td>
-                {{ producto.precio }}
-            </td>
-            <td>
-                {{ producto.descripcion }}
-            </td>
-            <td>
-                {{ producto.stock }}
-            </td>
-            <td>
-                {{ producto.categoria }}
-            </td>
-            <td>
-                <a href="{% url 'eliminar_producto' producto.pk %}" class=" btn btn-danger btn-sm">Eliminar</a>
-                <a href="{% url 'editar_producto' producto.pk %}" class="btn btn-primary btn-sm">Editar</a>
-            </td>
+        {% if productos %}
+            {% for producto in productos %}
+            <tr>
+                <td>
+                    {{ producto.nombre }}
+                </td>
+                <td>
+                    {{ producto.precio }}
+                </td>
+                <td>
+                    {{ producto.descripcion }}
+                </td>
+                <td>
+                    {{ producto.stock }}
+                </td>
+                <td>
+                    {{ producto.categoria }}
+                </td>
 
+                <td>
+                    {% if perms.productos.delete_producto %}
+                    <a href="{% url 'eliminar_producto' producto.pk %}" class=" btn btn-danger btn-sm">Eliminar</a>
+                    {% endif %}
+                    {% if perms.productos.change_producto %}
+                    <a href="{% url 'editar_producto' producto.pk %}" class="btn btn-primary btn-sm">Editar</a>
+                    {% endif %}
+                </td>
+               
+
+            </tr>
+            {% endfor %}
+        {% else %}
+         <tr>
+           <th>No hay productos</th>
         </tr>
-        {% endfor %}
+        {% endif %}
+       
     </table>
 {% endblock %}

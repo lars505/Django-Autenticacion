@@ -46,8 +46,8 @@ body{
     color: var(--white) !important;
 }
 
-.formulario{
-    width: 100%;
+.for{
+    width: 80% !important;
     height: calc(100vh - 120px);
     display: flex;
     flex-direction: column;
@@ -60,13 +60,13 @@ body{
     color: var(--bumblebee);
     margin-bottom: 20px;
 }
-.formulario form{
-    width: auto;
+.for form{
+    width: 80%;
     height: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+  
 }
 .input-nombres, .input-apellidos ,.input-username, .input-password, .input-confirmacion {
     width: 300px;

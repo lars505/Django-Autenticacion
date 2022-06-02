@@ -15,23 +15,36 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg shadow">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">Django</a>
+        <div class="container-fluid"> 
+          <a class="navbar-brand" href="#">Django {{user.username}}</a>
           <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon icono"></span>
           </button>
           <div class="collapse navbar-collapse justify-content-end"  id="navbarNavAltMarkup">
             <div class="navbar-nav mr-auto">
               <a class="nav-link active" aria-current="page" href="{% url 'index' %}">Home</a>
+             {% if perms.productos.view_producto %}
               <a class="nav-link" href="{% url 'listar_productos' %}">Listar Productos</a>
+              {% endif %}
+              {% if perms.productos.add_producto %}
               <a class="nav-link" href="{% url 'agregar_producto' %}">Agregar productos</a>
+              {% endif %}
+              {% if user.is_authenticated %}
+              <a class="nav-link" href="{% url 'logout' %}">Cerrar session</a>
+              {% else %}
+              <a class="nav-link" href="{% url 'login' %}">Iniciar session</a>
+              <a class="nav-link" href="{% url 'registro' %}">Registrarse</a>
+              {% endif %}
+
               
-              <a class="nav-link">Configuración</a>
+             
+             
+             
             </div>
           </div>
         </div>
       </nav>
-    <div class="container p-0">
+    <div class="container p-0 m-auto">
         
         {%block container%}
         {% endblock %}
