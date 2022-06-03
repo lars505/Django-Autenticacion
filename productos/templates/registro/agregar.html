@@ -5,11 +5,11 @@
 {%block container%}
 {% load crispy_forms_tags %}
 <div class="row">
-    <div class="col-md-12">
-        <div class="for m-auto">
+    <div class="col-md-12 col-12">
+        <div class="fo m-auto">
             <form action="" method="post">
                 {% csrf_token %}
-                {{ form }}
+                {{ form | crispy }}
                 <br>
                 <input type="submit" value="Guardar" class=" m-auto input-submit btn btn-success float-right">
             </form>

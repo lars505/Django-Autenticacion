@@ -1,6 +1,25 @@
 {% extends 'registro/layout.html'%}
-
 {% block title%} lista de Productos {% endblock %}
+{% block js %} 
+    <script>
+        function eliminarProducto(id){
+            Swal.fire({
+                icon : 'question',
+                title : 'Estas seguro?',
+                text : 'Una vez eliminado no podras recuperarlo',
+                showCancelButton : true,
+                cancelButtonText : 'Si, Eliminar',
+                reverseButtons : true,
+                confirmButtonColor : '#de3545'
+              })
+                .then((result) => {
+                    if (result.value) {
+                        window.location.href = 'eliminar-producto/'+id;
+                    }
+                })
+        }
+    </script>
+{% endblock %}
 
 {% block container %}
 <br><br><br>
@@ -37,7 +56,7 @@
 
                 <td >
                     {% if perms.productos.delete_producto %}
-                    <a href="{% url 'eliminar_producto' producto.pk %}" class=" btn btn-danger btn-sm">Eliminar</a>
+                    <a href="#" onclick="eliminarProducto({{producto.id}})" class=" btn btn-danger btn-sm">Eliminar</a>
                     {% endif %}
                     {% if perms.productos.change_producto %}
                     <a href="{% url 'editar_producto' producto.pk %}" class="btn btn-primary btn-sm">Editar</a>

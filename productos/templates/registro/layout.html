@@ -16,7 +16,7 @@
 <body>
     <nav class="navbar navbar-expand-lg shadow">
         <div class="container-fluid"> 
-          <a class="navbar-brand" href="#">Django {{user.username}}</a>
+          <a class="navbar-brand" href="#">Django {{user.username | title }}</a>
           <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon icono"></span>
           </button>
@@ -24,34 +24,58 @@
             <div class="navbar-nav mr-auto">
               <a class="nav-link active" aria-current="page" href="{% url 'index' %}">Home</a>
              {% if perms.productos.view_producto %}
-              <a class="nav-link" href="{% url 'listar_productos' %}">Listar Productos</a>
-              {% endif %}
-              {% if perms.productos.add_producto %}
-              <a class="nav-link" href="{% url 'agregar_producto' %}">Agregar productos</a>
-              {% endif %}
-              {% if user.is_authenticated %}
-              <a class="nav-link" href="{% url 'logout' %}">Cerrar session</a>
-              {% else %}
-              <a class="nav-link" href="{% url 'login' %}">Iniciar session</a>
-              <a class="nav-link" href="{% url 'registro' %}">Registrarse</a>
+                <a class="nav-link" href="{% url 'listar_productos' %}">Listar Productos</a>
               {% endif %}
 
-              
-             
-             
-             
+              {% if perms.productos.add_producto %}
+                <a class="nav-link" href="{% url 'agregar_producto' %}">Agregar productos</a>
+              {% endif %}
+
+              {% if user.is_authenticated %}
+                <a class="nav-link" href="{% url 'logout' %}">Cerrar session</a>
+              {% else %}
+                <a class="nav-link" href="{% url 'login' %}">Iniciar session</a>
+                <a class="nav-link" href="{% url 'registro' %}">Registrarse</a>
+              {% endif %}
             </div>
           </div>
         </div>
       </nav>
+
+      
     <div class="container p-0 m-auto">
-        
         {%block container%}
+        
         {% endblock %}
     </div>
 
     <!-- Js bootstrap 5.1 -->
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-</body>
+    
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    {% if messages %}
+            {% for message in messages %}
+            <script>
+              Swal.fire({
+                icon : 'success',
+                title : 'Confirmación',
+                text : '{{message}}',
+                showConfirmButton : false,
+                timer : 2000,
+                backdrop: `
+                rgba(0,0,123,0.4)
+                url("{% static 'img/nyan-cat.gif' %}")
+                left top
+                no-repeat`
+              });
+            </script>
+            {% endfor %}
+      {% endif %}
+    
+      {% block js %} 
+      {% endblock %}
+
+  </body>
 </html>

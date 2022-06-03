@@ -8,6 +8,8 @@ from .forms import ProductoForm, RegistroForm
 
 from .models import Producto
 
+from django.contrib import messages
+
 # Create your views here.
 
 def index(request):
@@ -29,6 +31,7 @@ def agregar_producto(request):
             #Guardamos el formulario
             formulario.save()
             #Redireccionamos a la pagina de listar productos
+            messages.success(request, 'Producto agregado correctamente!.')
             return redirect('listar_productos')
         else:
             #Si el formulario no es valido, lo cargamos de nuevo
@@ -55,6 +58,7 @@ def editar_producto(request, id):
         formulario = ProductoForm(request.POST, instance=producto)
         if formulario.is_valid():
             formulario.save()
+            messages.success(request, 'Producto editado correctamente!.')
             return redirect(to='listar_productos')
         else:
             data['form'] = formulario
