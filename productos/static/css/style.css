@@ -66,20 +66,21 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
   
 }
-.input-nombres, .input-apellidos ,.input-username, .input-password, .input-confirmacion {
-    width: 300px;
-    height: 35px;
-    background: var(--text-input-field);
-    border: 2px solid var(--bumblebee);
-    border-radius: 4px;
-    margin: 10px 0 10px 0;
-    padding: 5px;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    -ms-border-radius: 4px;
-    -o-border-radius: 4px;
+.input-username,.input-nombres, .input-apellidos ,.input-username, .input-password, .input-confirmacion {
+    width: 300px ;
+    height: 35px ;
+    background: var(--text-input-field) !important;
+    border: 2px solid var(--bumblebee) !important;
+    border-radius: 4px !important;
+    margin: 10px 0 10px 0 !important;
+    padding: 5px !important;
+    -webkit-border-radius: 4px ;
+    -moz-border-radius: 4px ;
+    -ms-border-radius: 4px ;
+    -o-border-radius: 4px ;
     outline: none;
 }
 .input-submit{

@@ -18,8 +18,13 @@ class ProductoForm(forms.ModelForm):
         }
 
 class RegistroForm(UserCreationForm):
+    username = forms.CharField(label="Nombre de usuario", widget=forms.TextInput(attrs={'class':'form-control'}))
+    email = forms.EmailField()
+    password1 = forms.CharField(label='contraseña',widget=forms.PasswordInput(attrs={'class':'form-control'}))
+    password2: forms.Field(label='confirmar contraseña',widget=forms.PasswordInput(attrs={'class':'form-control'}))
     class Meta:
         model = User
         fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2')
+        help_texts = { k:"" for k in fields}
    
         
